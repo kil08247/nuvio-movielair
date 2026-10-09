@@ -1,0 +1,31 @@
+export default async function (ctx) {
+  // Nuvio passes the TMDB ID, IMDB ID, and category type automatically
+  const { tmdbId, imdbId, type, season, episode } = ctx;
+  const streams = [];
+
+  try {
+    // We use a public streaming endpoint that handles the background script rendering
+    let targetUrl = `https://vidsrc.xyz{tmdbId}`;
+    
+    if (type === "series") {
+      targetUrl = `https://vidsrc.xyz{tmdbId}&season=${season}&episode=${episode}`;
+    }
+
+    // Pass the stream metadata context cleanly back into Nuvio's internal video player engine
+    streams.push({
+      name: "MovieLair Alternative (Auto)",
+      type: "url",
+      url: targetUrl,
+      quality: "Auto",
+      headers: {
+        "Referer": "https://movielair.cc",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36..."
+      }
+    });
+
+  } catch (error) {
+    console.error("Addon provider failed to process video metadata:", error);
+  }
+
+  return streams;
+}

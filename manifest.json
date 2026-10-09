@@ -1,0 +1,17 @@
+json
+{
+  "id": "org.custom.movielair",
+  "name": "MovieLair Provider",
+  "version": "1.0.0",
+  "description": "Pulls video streams dynamically from MovieLair.",
+  "icon": "https://movielair.cc",
+  "type": "provider",
+  "providers": [
+    {
+      "id": "movielair-scraper",
+      "name": "MovieLair Engine",
+      "types": ["movie", "series"],
+      "script": "src/movielair/index.js"
+    }
+  ]
+}
