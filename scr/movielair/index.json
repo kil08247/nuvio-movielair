@@ -1,30 +1,23 @@
 export default async function (ctx) {
-  const { tmdbId, type, season, episode } = ctx;
   const streams = [];
 
   try {
-    // 1. Build the target embed URL template links cleanly
-    let targetUrl = `https://vidsrc.xyz{tmdbId}`;
-    
-    if (type === "series") {
-      targetUrl = `https://vidsrc.xyz{tmdbId}/${season}/${episode}`;
-    }
+    // This is the exact, live link you just pulled from your browser
+    const liveMovieLairUrl = "https://obsidianobfuscation.space/pl/H4sIAAAAAAAAAw3O3W6DIBgA0FfiR40u6U2jaLJoh5QP5U7BxQ60trrN.vTbeYJjjcXEhomN.i6O7RB_xlFiu77vECJxSN7Kr_FWTcBlagLuwYsJTxVb1usx8npeaJfjtXxt79rfQ450ATMPuil5mab65cT_KH_G4HjYKtuWRK.c3neZwvd1Hr3MUdjOjIKsqW6saMnyvOSbEAXTIseHofZRHhWFzCJT6EAVyw08PMzMuC38XoP2vaq3YWL_D.3M7PZLWj5rafOq0ZmQWyNcQAyBRqAx6wk.g2LLAIwqp1HpWNSiLPjgp9MfZPFaRAkBAAA-/master.m3u8?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJteS1hdXRoIiwiaWF0IjoxNzkxNTc2MTUyLCJuYmYiOjE3OTE1NzYxNTIsImV4cCI6MTc5MTU5MDU1MiwiaXBfY2lkciI6IjI2MDc6ZmI5MDo5OTg3OmIyNDc6Oi82NCJ9.7rd6YnCCoTpto93JUcS4M5eDqLlfkWsz5SIYiW3SzPI";
 
-    // 2. Return the stream structure configured as an external webview
     streams.push({
-      name: "MovieLair Alternative Player",
-      type: "webview", // Instructs Nuvio to render an iframe layer instead of a raw video file
-      url: targetUrl,
-      quality: "Auto",
+      name: "MovieLair Direct Testing Link",
+      type: "url",          
+      url: liveMovieLairUrl,   
+      quality: "Auto",      
       headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Referer": "https://vidsrc.xyz",
-        "Origin": "https://vidsrc.xyz"
+        "Referer": "https://movielair.cc", 
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
       }
     });
 
   } catch (error) {
-    console.error("MovieLair alternative provider script error:", error);
+    console.error("Direct link player error:", error);
   }
 
   return streams;
