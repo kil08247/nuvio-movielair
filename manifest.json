@@ -1,15 +1,16 @@
 {
   "id": "org.custom.movielair",
-  "name": "MovieLair Direct Engine",
-  "version": "1.3.0",
-  "description": "Renders direct testing frames inside Nuvio.",
+  "name": "MovieLair Engine",
+  "version": "1.3.5",
+  "description": "Direct testing playback provider for MovieLair",
   "icon": "https://movielair.cc",
   "type": "provider",
-  "content": {
-    "trusted": true,
-    "actions": {
-      "movie": "https://obsidianobfuscation.space",
-      "series": "https://obsidianobfuscation.space"
+  "providers": [
+    {
+      "id": "movielair",
+      "name": "MovieLair Direct",
+      "types": ["movie", "series"],
+      "script": "providers/movielair.js"
     }
-  }
+  ]
 }
