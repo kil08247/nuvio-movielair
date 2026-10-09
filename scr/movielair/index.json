@@ -3,17 +3,17 @@ export default async function (ctx) {
   const streams = [];
 
   try {
-    // 1. Build the mathematically exact URL strings required by the extractor
+    // 1. Build the target embed URL template links cleanly
     let targetUrl = `https://vidsrc.xyz{tmdbId}`;
     
     if (type === "series") {
-      targetUrl = `https://vidsrc.xyz{tmdbId}&season=${season}&episode=${episode}`;
+      targetUrl = `https://vidsrc.xyz{tmdbId}/${season}/${episode}`;
     }
 
-    // 2. Feed the verified endpoint link straight back into Nuvio's list engine
+    // 2. Return the stream structure configured as an external webview
     streams.push({
-      name: "MovieLair Alternative",
-      type: "url",
+      name: "MovieLair Alternative Player",
+      type: "webview", // Instructs Nuvio to render an iframe layer instead of a raw video file
       url: targetUrl,
       quality: "Auto",
       headers: {
