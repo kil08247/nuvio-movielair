@@ -1,16 +1,14 @@
 {
   "id": "org.custom.movielair",
-  "name": "MovieLair Engine",
-  "version": "1.4.0",
-  "description": "Direct testing playback provider for MovieLair",
+  "name": "MovieLair Player Engine",
+  "version": "2.1.0",
+  "description": "Direct playback map for MovieLair",
   "icon": "https://movielair.cc",
   "type": "provider",
-  "providers": [
-    {
-      "id": "movielair",
-      "name": "MovieLair Direct",
-      "types": ["movie", "series"],
-      "script": "providers/movielair.js"
+  "manifest": {
+    "actions": {
+      "movie": "https://movielair.cc{title}",
+      "series": "https://movielair.cc{title}/season/{season}/episode/{episode}"
     }
-  ]
+  }
 }
