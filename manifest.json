@@ -1,15 +1,16 @@
 {
   "id": "org.custom.movielair",
-  "name": "MovieLair Alternative Player",
-  "version": "1.1.0",
-  "description": "Renders custom playback frames inside Nuvio.",
+  "name": "MovieLair Provider",
+  "version": "1.2.0",
+  "description": "Pulls video streams dynamically from MovieLair.",
   "icon": "https://movielair.cc",
   "type": "provider",
-  "content": {
-    "trusted": true,
-    "actions": {
-      "movie": "https://vidsrc.xyz{id}",
-      "series": "https://vidsrc.xyz{id}&season={season}&episode={episode}"
+  "providers": [
+    {
+      "id": "movielair-scraper",
+      "name": "MovieLair Engine",
+      "types": ["movie", "series"],
+      "script": "src/movielair/index.js"
     }
-  }
+  ]
 }
