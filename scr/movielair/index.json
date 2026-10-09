@@ -3,14 +3,14 @@ export default async function (ctx) {
   const streams = [];
 
   try {
-    // 1. Construct the stream provider target URL
+    // 1. Build the explicit public extraction URL using correct string variables
     let targetUrl = `https://vidsrc.xyz{tmdbId}`;
     
     if (type === "series") {
       targetUrl = `https://vidsrc.xyz{tmdbId}&season=${season}&episode=${episode}`;
     }
 
-    // 2. Format the response object to feed directly into Nuvio's internal engine
+    // 2. Format the response object explicitly for Nuvio's external web player frame
     streams.push({
       name: "MovieLair Alternative",
       type: "url",
